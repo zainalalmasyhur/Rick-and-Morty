@@ -1,7 +1,9 @@
+// src/pages/CharacterList.js
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import BackToTopButton from '../components/BackToTopButton';
 
 const GET_CHARACTERS = gql`
   query GetCharacters {
@@ -39,7 +41,7 @@ const Title = styled.h1`
 
 const CharacterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   justify-content: center;
 `;
@@ -52,7 +54,7 @@ const CharacterCard = styled.div`
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  height: 500px; /* Adjusted height for better image display */
+  height: 400px;
   
   &:hover {
     transform: translateY(-5px);
@@ -62,9 +64,9 @@ const CharacterCard = styled.div`
 
 const CharacterImage = styled.img`
   width: 100%;
-  height: 300px; /* Increased height */
+  height: 200px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd; /* Border to separate image from details */
+  border-bottom: 1px solid #ddd;
 `;
 
 const CharacterDetails = styled.div`
@@ -123,6 +125,7 @@ function CharacterList() {
           </Link>
         ))}
       </CharacterGrid>
+      <BackToTopButton />
     </Container>
   );
 }

@@ -5,12 +5,10 @@ function CharacterByLocation() {
   const [filter, setFilter] = useState('');
   const locations = useSelector((state) => state.locations);
 
-  // Filter locations based on the filter input
   const filteredLocations = locations.filter(location =>
     location.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  // Group characters by location
   const groupedLocations = filteredLocations.reduce((acc, location) => {
     if (!acc[location.name]) {
       acc[location.name] = {
@@ -26,7 +24,6 @@ function CharacterByLocation() {
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Characters by Location</h1>
       
-      {/* Filter Input */}
       <div className="mb-6 flex justify-center">
         <input
           type="text"
@@ -37,7 +34,6 @@ function CharacterByLocation() {
         />
       </div>
       
-      {/* Display Filtered Locations */}
       {Object.keys(groupedLocations).length === 0 ? (
         <p className="text-center text-lg text-gray-600">No locations found for the given filter.</p>
       ) : (
@@ -45,16 +41,16 @@ function CharacterByLocation() {
           const location = groupedLocations[locationName];
           return (
             <div key={locationName} className="mb-8 p-4 bg-white rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold mb-4">{location.name}</h2>
+              <h2 className="text-xl font-semibold mb-4">{location.name}</h2>
               {location.characters.length === 0 ? (
                 <p className="text-center text-lg text-gray-600">No characters in this location.</p>
               ) : (
                 location.characters.map((character) => (
-                  <div key={character.id} className="flex items-center mb-4">
+                  <div key={character.id} className="flex flex-col sm:flex-row items-center mb-4">
                     <img
                       src={character.image}
                       alt={character.name}
-                      className="w-16 h-16 rounded-full object-cover mr-4"
+                      className="w-24 h-24 rounded-full object-cover mb-2 sm:mb-0 sm:mr-4"
                     />
                     <p className="text-lg font-medium">{character.name}</p>
                   </div>

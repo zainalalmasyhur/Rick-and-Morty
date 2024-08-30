@@ -1,4 +1,3 @@
-// src/pages/CharacterDetail.js
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
@@ -40,7 +39,7 @@ function CharacterDetail() {
   if (error) return <p className="text-center text-red-600 font-semibold">Error: {error.message}</p>;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 py-6">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md">
         <div className="p-6 text-center">
           <img
